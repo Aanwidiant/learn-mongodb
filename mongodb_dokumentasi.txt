@@ -1,0 +1,252 @@
+mongodb server
+cd /d/MongoDB/mongodb-win32-x86_64-windows-7.0.12
+jalankan perintah:
+bin/mongod --dbpath=data
+bin/mongod --auth --dbpath=data -> fitur security
+
+mongo shell
+cd /d/MongoDB/mongosh-2.2.12-win32-x64
+jalankan perintah:
+bin/mongosh "mongodb://localhost:27017/test"
+bin/mongosh “mongodb://username:password@host:port/database?authSource=admin” -> login admin
+
+bin/mongosh “mongodb://mongo:mongo@localhost:27017/belajar?authSource=admin”
+
+bin/mongosh “mongodb://contoh2:contoh2@localhost:27017/test?authSource=admin”
+
+bin/mongosh “mongodb://dwi:dwi@localhost:27017/belajar?authSource=admin”
+
+# Database methods
+
+    memilih databse
+    use nama_database -> use belajar
+
+    melihat seluruh database
+    show databases
+
+    menghapus database
+    db.dropDatabase()
+
+    mengambil nama database
+    db.getName()
+
+    Mengambil informasi host tempat mongodb
+    db.hostInfo()
+
+    Mengambil versi database
+    db.version()
+
+    Mengambil statistik penggunaan database
+    db.stats()
+
+# Database methods untuk collection
+
+    Menganmbil semua nama collection
+    db.getCollectionNames()
+
+    Membuat collection baru
+    db.createCollection(name)
+
+    Mendapatkan object collection
+    db.getCollection(name)
+    atau
+    db.<name>
+
+    Mendapatkan informasi semua collection
+    db.getCollectionInfos()
+
+# Collection methods
+
+    Mengambil semua document
+    db.<collection>.find()
+
+    Mengambil jumlah document
+    db.<collection>.count()
+
+    Menghapus collection
+    db.<collection>.drop()
+
+    Mengambil total ukuran collection
+    db.<collection>.totalSize()
+
+    Mengambil informasi statistik collection
+    db.<collection>.stats()
+
+# Tipe data pada MongoDB (BSON)
+
+    Double -> double
+    String -> string
+    Object -> object
+    Array -> array
+    Binary Data -> binData
+    ObjectId -> objectId
+    Bollean -> bool
+    Date ->  date 
+    Null -> null
+    Regular Expression -> regex
+    JavaScript -> javascript 
+    JavaScript with Scope -> javascriptWithScope
+    32 Bit Integer -> int
+    Timestamp -> timestamp
+    64 Bit Integer -> long
+    Decimal 128 -> decimal 
+    Min Key -> minKey
+    Max Key -> maxKey
+
+# Insert Document Function
+
+    Menambah dokumen ke collection
+    db.<collection>.insertOne(document)
+
+    Menambah semua dokumen di array ke collection
+    db.<collection>.insertMany(array<document>)
+
+# Query Document Function
+
+    Mencari document dengan query
+    db.<collection>.find(query)
+
+# Comparison Operator
+    $eq -> membandingkan value dengan value lain
+    $gt -> membandingkan value lebih besar dari value lain
+    $gte -> membandingkan value lebih besar atau sama dengan value lain
+    $lt -> membandingkan value lebih kecil dari value lain
+    $lte -> membandingkan value lebih kecil atau sama dengan value lain
+    $in -> membandingkan value dengan value yang ada di array
+    $nin -> membandingkan value tidak ada dalam value yang ada di array
+    $ne -> membandingkan value tidak sama dengan value lain
+
+# Logical Query Operator
+    $and -> menggabungkan query dengan operasi AND, mengembalikan document jika semua kondisi benar
+    $or -> menggabungkan query dengan operasi OR, mengembalikan document jika salah satu kondisi benar
+    $nor -> menggabungkan query dengan operasi NOR, mengembalikan document yang gagal di semua kondisi
+    $not -> membalikan kondisi, mengembalikan document yang tidak sesuai kondisi
+
+# Element Query Operator
+    $exists -> mencocokkan document yang memiliki field tersebut
+    $type -> mencocokkan document yang memiliki type field tersebut
+
+# Evaluation Query Operator
+    $expr -> menggunakan aggregation operation
+    $jsonSchema -> validasi document sesuai dengan JSON schema
+    $mod -> melakukan operasi modulo
+    $regex -> mengambil documnet sesuai dengan regular expression (PCRE)
+    $text -> melakukan pencarian menggunakan text
+    $where -> mengambil document dengan JavaScript Function
+
+# Array Query Operator
+    $all -> mencocokkan array yang mengandung elemen-elemen tertentu
+    $elemMatch -> mengambil dokumen jika tiap element di array memenuhi kondisi tertentu
+    $size -> mengambil document jika ukuran array sesuai
+
+# Projection Operator
+    db.<collection>.find(query,projection)
+
+    $ -> limit array hanya mengembalikan data pertama yang match dengan array operator
+    $elemMatch -> limit array hanya mengembalikan data pertama yang match dengan kondisi query
+    $meta -> mengembalikan informasi metadata yang didapat dari setiap matching document
+    $slice -> mengontrol jumlah data yang ditampilkan pada array
+
+# Query Modifier Function
+    count() -> mengambil jumlah data hasil query
+    limit(size) -> membatasi jumlah data yang didapat dari query
+    skip(size) -> menghiraukan data pertama hasil query sejumlah yang ditentukan
+    sort(query) -> mengurutkan hasil data query
+
+# Update Document Function
+    updateOne() -> mengubah satu document
+    updateMany() -> mengubah banyak document sekaligus
+    replaceOne() -> mengubah total satu document dengan document baru
+
+# Field Update Operator
+    $set -> mengubah nilai field di document
+    $unset -> menghapus field di document
+    $rename -> mengubah nama field di document
+    $inc -> menaikan nilai number di field sesuai dengan jumlah tertentu
+    $currentDate -> mengubah field menjadi waktu saat ini
+
+# Array Update Operator
+    $ -> mengupdate data array pertama sesuai kondisi query
+    $[] -> mengupdate semua data array sesuai kondisi query
+    $[<identifiera>] -> mengupdate semua data array yang sesuai kondisi arrayFilters
+    <index> -> mengupdate data array sesuai dengan nomor index
+    $addToSet -> menambahkan value ke array, dihiraukan jika sudah ada
+    $pop -> menghapus element pertama(-1) atau terakhir (1) array
+    $pull -> menghapus semua element di array yang sesuai kondisi
+    $push -> menambahkan element ke array
+    $pullAll -> menghapus semua element di array
+
+# Array Update Operator Modifier
+    $each -> digunakan di $addToSet dan $push, untuk menambahkan multiple element
+    $position -> digunakan di $push untuk mengubah posisi menambahkan data
+    $slice -> digunakan di $push untuk menentukan jumlah maksimal data array
+    $sort -> digunakan untuk mengurutkan array setelah operasi $push
+
+# Delete Document Function
+    db.<collection>.deleteOne(query) -> menghapus satu document yang sesuai dengan kondisi query
+    db.<collection>.deleteMany(query) -> menghapus banyak document yang sesuai dengan kondisi query
+
+# Bluk Write Function
+    db.<collection>.insertMany() -> insert document secara banyak sekaligus
+    db.<collection>.updateMany() -> update document secara banyak sekaligus
+    db.<collection>.deleteMany() -> delete document secara banyak sekaligus
+    db.<collection>.bulkWrite() -> melakukan operasi write (insert, update, delete) banyak secara sekaligus
+
+# Supported Bulk Write operation
+    insertOne
+    updateOne
+    updateMany
+    replaceOne
+    deleteOne
+    deleteMany
+
+    https://docs.mongodb.com/manual/core/bulk-write-operations/
+
+# Indexes
+    db.<collection>.createIndex() -> membuat index di collection
+    db.<collection>.getIndexes() -> melihat semua index di collection
+    db.<collection>.dropIndex() -> menghapus index di collection
+
+# User Function
+    db.creteUser() -> membuat user
+    db.getUsers() -> mendapatkan semua user
+    db.dropUser() -> menghapus user
+    db.updateUser() -> mengupdate user
+    db.changeUserPassword() -> mengubah user password
+
+# Database Roles
+    read -> bisa membaca data di semua collection yang bukan sistem collection
+    readWrite -> bisa membaca dan mengubah data di semua collection yang bukan sistem collection
+    dbAdmin -> bisa melakukan kemampuan administrasi database
+    userAdmin -> mampu membuat user dan Roles
+    dbOwner -> kombinasi readWrite, dbAdmin dan userAdmin
+
+# All Database Roles
+    readAnyDatabase -> seperti read role, tapi untuk semua database
+    readWriteAnyDatabase -> seperti readWrite role, tapi untuk semua database
+    userAdminAnyDatabase -> seperti userAdmin, tapi untuk semua database
+    dbAdminAnyDatabase -> seperti dbAdmin, tapi untuk semua database
+
+# Backup dan Restore Roles
+    backup -> kemampuan untuk melakukan backup database
+    restore -> kemampuan untuk melakukan restore database
+
+# Superuser Roles
+    root -> bisa melakukan apapun
+
+# Role Function
+    db.createRole() -> membuat role baru
+    db.getRoles() -> mendapatkan role
+    db.deleteRole() -> menghapus role
+    db.updateRole() -> mengubah role
+# Backup Menggunakan mongodump
+    bin/mongodump --uri="mongodb://mongo:mongo@localhost:27017/belajar?authSource=admin" --out=backup-dump
+
+# Backup Menggunakan mongoexport
+    bin/mongoexport --uri="mongodb://mongo:mongo@localhost:27017/belajar?authSource=admin" --collection=customers --out=customers.json
+
+# Restore Menggunakan mongorestore
+    bin/mongorestore --uri="mongodb://mongo:mongo@localhost:27017/belajar_restore?authSource=admin" --dir=backup-dump/belajar
+
+# Restore Menggunakan mongoimport
+    bin/mongoimport --uri="mongodb://mongo:mongo@localhost:27017/belajar_import?authSource=admin" --collection=customers --file=customers.json
